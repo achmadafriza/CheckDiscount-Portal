@@ -1,0 +1,17 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+    {% block content %}
+
+        <div class="container">
+            <div>
+                You do not have permission to access this content.
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    <a href="{% url 'user:logout' %}">Log Out</a>
+                </small>
+            </div>
+        </div>
+
+    {% endblock %}

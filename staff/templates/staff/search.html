@@ -1,0 +1,28 @@
+{% load static %}
+
+<script type="text/javascript">
+    $("#ammount-button").on('click', function(e) {
+        var searchbar = $("#searchform").find("input[name='id']")
+        $(searchbar).attr('name', 'ammount')
+        $(searchbar).attr('placeholder', 'Search by Ammount here!')
+    })
+
+    $("#id-button").on('click', function(e) {
+        var searchbar = $("#searchform").find("input[name='ammount']")
+        $(searchbar).attr('name', 'id')
+        $(searchbar).attr('placeholder', 'Search by ID here!')
+    })
+
+    $("#searchform").submit(function(e) {
+        e.preventDefault()
+
+        var search = $(this).find("input")
+        var container = $("#content")
+
+        if(search.val().length == 0) {
+            window.location.href = "{% url 'staff:tier' %}"
+        } else {
+            window.location.href = "{% url 'staff:tier' %}?" + search.attr("name") + "=" + search.val()
+        }
+    })
+</script>

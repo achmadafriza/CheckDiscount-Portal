@@ -1,0 +1,36 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="container">
+            <div class="log-out">
+                You Are Already Logged In.
+            </div>
+        </div>
+    {% else %}
+        <div class="container mb-5">
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4 register-title">LOG IN</legend>
+                        {{ form.as_table }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info sign-up" type="submit">LOGIN</button>
+                        <small>
+                            <a class="ml-2" href="/password-reset">Forgot Your Password? not done</a>
+                        </small>
+                    </div>
+                </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Don't Have An Account? <a class="ml-2" href="/register">Sign Up Here!</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "transaction/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container mb-5">
+        <div class="content-section">
+            <div>
+                {% if response.discounted %}
+                <h1>Congratulations!</h1>
+                <p>You get a {{ response.discountedAmmount }} discount on your Transaction!</p>
+
+                {% else %}
+                <h1>Too bad! You didn't get your discount</h1>
+                <p>Go try again!</p>
+                {% endif %}
+
+                <a href="{% url 'transaction:checkDiscount' %}">
+                    <button type="button" class="btn btn-primary">Go Back</button>
+                </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+Package     Version  
+----------- ---------
+asgiref     3.2.10   
+certifi     2020.6.20
+chardet     3.0.4    
+Django      3.0.8    
+idna        2.10     
+mysqlclient 2.0.1    
+pip         20.0.2   
+pytz        2020.1   
+requests    2.24.0   
+setuptools  45.2.0   
+sqlparse    0.3.1    
+urllib3     1.25.10  
+wheel       0.34.2   
+whitenoise  5.1.0    

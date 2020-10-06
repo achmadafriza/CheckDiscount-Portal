@@ -1,0 +1,74 @@
+{% extends "staff/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <div>
+            {% if length %}
+            <table id="content-table" class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">IP Address</th>
+                    <th scope="col">Request Type</th>
+                    <th scope="col">Request Header</th>
+                    <th scope="col">Request Body</th>
+                    <th scope="col">Response Header</th>
+                    <th scope="col">Response Body</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Status Details</th>
+                    <th scope="col">Time Requested</th>
+                    <th scope="col">Time Responded</th>
+                    <th scope="col">Elapsed Time</th>
+                  </tr>
+                </thead>
+                <tbody id="content">
+                    {% for item in items %}
+                    <tr>
+                        <td class="content-id">{{item.id}}</td>
+                        <td class="content-ip">{{item.ip}}</td>
+                        <td class="content-requestType">{{item.requestType}}</td>
+                        <td class="content-requestHeader">{{item.requestHeader}}</td>
+                        <td class="content-requestBody">{{item.requestBody}}</td>
+                        <td class="content-responseHeader">{{item.responseHeader}}</td>
+                        <td class="content-responseBody">{{item.responseBody}}</td>
+                        <td class="content-status">{{item.status}}</td>
+                        <td class="content-statusDetails">{{item.statusDetails}}</td>
+                        <td class="content-timeRequest">{{item.timeRequest}}</td>
+                        <td class="content-timeResponse">{{item.timeResponse}}</td>
+                        <td class="content-elapsedTime">{{item.elapsedTime}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% if items.has_other_pages %}
+                    <ul class="pagination">
+                        {% if items.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                    
+                        {% for i in items.paginator.page_range %}
+                            {% if items.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if items.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}          
+            {% else %}
+            <div>
+                <h1>Content not found</h1>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+    {% block content %}
+
+        <div class="container">
+            <div class="log-out">
+                You Have Been Logged Out.
+            </div>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    <a href="/login">Log In Again</a>
+                </small>
+            </div>
+        </div>
+
+    {% endblock %}

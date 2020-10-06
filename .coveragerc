@@ -1,0 +1,20 @@
+# .coveragerc to control coverage.py
+# models and admin are built in django, it doesn't need to be tested.
+# How models work are tested in tests.py
+
+[run]
+omit = 
+    */__init__.py
+    */migrations/*
+    */__pycache/*
+    */models.py
+    */admin.py
+
+[report]
+show_missing = True
+omit = 
+    */__init__.py
+    */migrations/*
+    */__pycache/*
+    */models.py
+    */admin.py

@@ -1,0 +1,66 @@
+{% extends "staff/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <div>
+            {% if length %}
+            <table id="content-table" class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Tier ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Discounted</th>
+                    <th scope="col">Transaction Ammount</th>
+                    <th scope="col">Discounted Ammount</th>
+                    <th scope="col">Transaction Time</th>
+                  </tr>
+                </thead>
+                <tbody id="content">
+                    {% for item in items %}
+                    <tr>
+                        <td class="content-id">{{item.id}}</td>
+                        <td class="content-customerID">{{item.customerID}}</td>
+                        <td class="content-tierID">{{item.tierID}}</td>
+                        <td class="content-username">{{item.username}}</td>
+                        <td class="content-discounted">{{item.discounted}}</td>
+                        <td class="content-transactionAmmount">{{item.transactionAmmount}}</td>
+                        <td class="content-discountedAmmount">{{item.discountedAmmount}}</td>
+                        <td class="content-transactionTime">{{item.transactionTime}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% if items.has_other_pages %}
+                    <ul class="pagination">
+                        {% if items.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                    
+                        {% for i in items.paginator.page_range %}
+                            {% if items.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if items.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}          
+            {% else %}
+            <div>
+                <h1>Content not found</h1>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

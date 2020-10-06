@@ -1,0 +1,19 @@
+{% extends "user/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container mb-5">
+        <div class="content-section">
+            <form method="POST" action="{% url 'user:otp' %}">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4 register-title">VERIFY</legend>
+                    {{ form.as_table }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info sign-up" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
